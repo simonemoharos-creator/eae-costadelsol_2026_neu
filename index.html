@@ -749,174 +749,105 @@ document.getElementById('hamburger').addEventListener('click',function(){this.cl
 </script>
 
 <script>
-/* ===== EAE COSTA DEL SOL — AI CONCIERGE ===== */
 (function(){
   var lang = 'en';
-  var hist = [];
-
   var KB = {
     en: {
-      welcome: "Welcome. I am the private AI Concierge for E.A.E. Costa del Sol. How can I assist you today?",
-      unknown: "Thank you for your question. For detailed information, please contact Simone Moharos directly at +34 681 336 692 or simonemoharos@gmail.com.",
+      welcome: 'Hello! I am your AI Concierge for the Escuela de Arte Ecuestre Costa del Sol. Ask me anything about this unique trophy asset.',
+      unknown: 'Thank you. For detailed information please use the contact form below - we will arrange a confidential NDA briefing.',
       rules: [
-        {k:['price','cost','asking','€','million','euro','value'],a:"The asking price is **€12.5 million** — offered exclusively as an asset deal. Land, all buildings, infrastructure and operational licences are included. The operating company (ACUAZAHARA S.A.) is not part of the transaction."},
-        {k:['size','land','m²','square','hectare','plot','cadastral'],a:"The estate covers **77,760 m²** (approx. 7.8 hectares) across two cadastral plots. Total covered built space: **19,154 m²**. K-Deportivo planning classification. Cadastral value approx. €2.45M."},
-        {k:['location','where','address','estepona','marbella','highway','access','n-340'],a:"Located on the N-340, km 159 · Río Padrón Alto · Estepona, Málaga. Just **8 min from Estepona centre**, 25 min from Marbella / Puerto Banús, 35 min from Gibraltar Airport, 70 min from Málaga International Airport. Direct AP-7 and N-340 access."},
-        {k:['stable','horse','equestrian','box','livery','arena'],a:"The estate has **150+ professional stable boxes**, a spectacular **indoor arena (24m × 64m)** with 1,600 spectator capacity, outdoor dressage and jumping arenas, quarantine facilities, tack rooms and wash boxes. Designed to the highest professional standard."},
-        {k:['restaurant','food','dining','abrevadero'],a:"El Abrevadero is a **180-cover licensed restaurant** with Andalusian rustic luxury, fireplace and bar. There is also a café-bar with terrace. The indoor arena can seat **1,300 dining guests** alongside 1,600 spectators."},
-        {k:['event','wedding','congress','conference','capacity','guests','salon','music'],a:"The 'Horses & Music' Salon accommodates **up to 500 guests** (configurable 240–500) for weddings, banquets and corporate events. The indoor arena hosts **galas, congresses, fashion shows and equestrian spectaculars** for up to 1,600 spectators. Full event infrastructure already licensed and operational."},
-        {k:['hotel','resort','boutique','develop','convert','redevelop','potential'],a:"The estate is ideal for **luxury boutique hotel conversion**, wellness & agro-resort, private members equestrian club, premium wedding & events venue, or corporate retreat. The existing residential buildings, F&B licence and event capacity create an immediate pathway to hospitality development."},
-        {k:['invest','roi','return','profit','revenue','income','lucrative','opportunity'],a:"This is a **once-in-a-generation investment**. The asking price of €12.5M is backed by: ①  19,154 m² of purpose-built infrastructure already in place (replacement cost far exceeds the asking price), ② operational event licences generating immediate revenue potential, ③ irreplaceable land position between Estepona and Marbella where coastal planning restrictions make replication legally impossible, ④ multiple exit strategies (hotel, resort, club, events, residential) — all leading to premium outcomes."},
-        {k:['replicate','unique','irreplaceable','one of a kind','impossible'],a:"This asset **cannot be replicated today**. Coastal planning laws and environmental protection zones introduced across Andalucía make it legally and practically impossible to assemble this combination of land size, zoning and equestrian/event infrastructure in this corridor. There is no comparable asset on the Costa del Sol."},
-        {k:['nda','confidential','disclosure','financials','detail','document'],a:"Full financial disclosure and detailed documentation are available **after NDA signature**. Please contact Simone Moharos at +34 681 336 692 or simonemoharos@gmail.com to proceed."},
-        {k:['contact','simone','phone','email','call','whatsapp','viewing','visit'],a:"**Simone Moharos** · Real Estate Agent
-📞 +34 681 336 692
-📞 +43 699 100 42714
-✉️ simonemoharos@gmail.com
-
-All enquiries are handled with absolute discretion. NDA required prior to financial disclosure."},
-        {k:['licence','license','planning','zoning','permit','k-dep','sports'],a:"The estate holds a **K-Deportivo planning classification** (sports licence), a licensed restaurant (El Abrevadero), event venue licences, and full equestrian operation permits. Annual IBI approx. €19,000."},
-        {k:['built','construction','building','infrastructure','space'],a:"Total built and covered space: **19,154 m²**. This includes the indoor arena, stables, Horses & Music Salon, El Abrevadero restaurant, residential buildings, offices, café-bar, veterinary facilities, forge and storage — all purpose-built to world-class standard."}
+        {k:['price','cost','eur','million','buy','purchase','invest','value','worth','return','roi'],r:'The asking price is EUR 12.5 million. This is a fully licensed equestrian estate of 77,760 sqm on the N-340 in Estepona - the most sought-after stretch of the Costa del Sol. ROI models show 8-14% yield potential through hotel conversion, premium events, and equestrian academy operations. Comparable new-build infrastructure would cost EUR 25-40 million.'},
+        {k:['size','land','area','hectare','sqm','m2','big','large','space'],r:'The property covers 77,760 sqm (approx. 7.8 hectares) with over 11,000 sqm of built infrastructure: main arena, competition arena, 150+ horse stables, restaurant with 180 covers, and event space for 1,600 guests.'},
+        {k:['location','where','address','estepona','n-340','road','coast','marbella','malaga'],r:'Located directly on the N-340 Carretera de Cadiz, between Estepona and San Pedro de Alcantara. Only 20 minutes from Marbella and Malaga airport. Prime visibility with highway frontage on the most prestigious coast in Spain.'},
+        {k:['stable','horse','equestrian','stall','paddock','box'],r:'150+ professional horse stables and paddocks, purpose-built for competition and training. Fully licensed and operational.'},
+        {k:['restaurant','food','dining','catering','bar','kitchen'],r:'On-site restaurant and bar with 180 covers. Generates independent revenue and can be operated separately or as part of a larger hospitality concept.'},
+        {k:['event','wedding','concert','show','gala','capacity','guest','party'],r:'Event facilities accommodate up to 1,600 guests. Equestrian shows, weddings, corporate galas - already established revenue streams that can be scaled significantly.'},
+        {k:['hotel','resort','develop','convert','villa','rooms','tourism','boutique'],r:'Full planning potential for hotel or boutique resort development. Comparable 5-star equestrian resorts on the Costa del Sol charge EUR 400-600 per night. This location and scale are ideal for a premium leisure destination.'},
+        {k:['licence','license','permit','legal','planning','status','approved','compliant'],r:'All operational licences in place for equestrian use, events and hospitality. No planning hurdles - fully legal and operational today.'},
+        {k:['nda','contact','visit','call','email','meet','info','brochure','details','showing'],r:'We would be delighted to arrange a private showing. Please complete the contact form below and we will respond within 24 hours. All enquiries are handled confidentially under NDA.'},
+        {k:['unique','rare','irreplaceable','trophy','why','special','opportunity'],r:'Truly irreplaceable: a fully licensed operational equestrian estate of this scale on the Costa del Sol does not exist anywhere else on the market. At EUR 12.5M for 7.8 hectares of premium infrastructure, this represents exceptional strategic value.'}
       ]
     },
     de: {
-      welcome: "Willkommen. Ich bin der private AI Concierge für E.A.E. Costa del Sol. Wie kann ich Ihnen helfen?",
-      unknown: "Vielen Dank für Ihre Frage. Für detaillierte Informationen wenden Sie sich bitte direkt an Simone Moharos: +34 681 336 692 oder simonemoharos@gmail.com.",
+      welcome: 'Willkommen! Ich bin Ihr KI-Concierge fuer die Escuela de Arte Ecuestre Costa del Sol. Stellen Sie mir Fragen zu diesem einzigartigen Trophy Asset.',
+      unknown: 'Danke fuer Ihre Frage. Bitte nutzen Sie das Kontaktformular unten - wir arrangieren gerne ein vertrauliches NDA-Briefing.',
       rules: [
-        {k:['preis','kosten','euro','million','wert','kaufpreis','€'],a:"Der Kaufpreis beträgt **€12,5 Millionen** — ausschließlich als Asset Deal. Land, alle Gebäude, Infrastruktur und Betriebslizenzen sind inbegriffen. Die Betriebsgesellschaft ACUAZAHARA S.A. ist nicht Teil der Transaktion."},
-        {k:['größe','fläche','m²','quadrat','hektar','grundstück','plot'],a:"Das Anwesen umfasst **77.760 m²** (ca. 7,8 Hektar) auf zwei Katastergrundstücken. Gesamte überbaute Fläche: **19.154 m²**. K-Deportivo Planungsklassifikation. Katasterwert ca. €2,45 Mio."},
-        {k:['lage','wo','adresse','estepona','marbella','autobahn','zugang'],a:"Lage: N-340, km 159 · Río Padrón Alto · Estepona, Málaga. Nur **8 Min. vom Zentrum Estepona**, 25 Min. von Marbella / Puerto Banús, 35 Min. vom Flughafen Gibraltar, 70 Min. vom internationalen Flughafen Málaga."},
-        {k:['stall','pferd','reiten','box','arena'],a:"Das Anwesen hat **150+ professionelle Stallboxen**, eine spektakuläre **Innenreitanlage (24m × 64m)** mit 1.600 Zuschauerplätzen, Außenarenas für Dressur und Springen sowie komplette Quarantäne- und Stalleinrichtungen."},
-        {k:['investition','rendite','gewinn','lukrativ','chance','einmalig'],a:"Dies ist eine **einmalige Investitionsmöglichkeit**: ① 19.154 m² fertige Infrastruktur (Ersatzkosten übersteigen den Kaufpreis bei weitem), ② operative Eventlizenzen mit sofortigem Umsatzpotenzial, ③ unersetzliche Lage zwischen Estepona und Marbella wo Baurecht eine Replikation unmöglich macht, ④ mehrere Exitstrategien (Hotel, Resort, Club, Events) — alle mit Premium-Ergebnissen."},
-        {k:['kontakt','simone','telefon','email','besichtigung'],a:"**Simone Moharos** · Immobilienmaklerin
-📞 +34 681 336 692
-📞 +43 699 100 42714
-✉️ simonemoharos@gmail.com
-
-Alle Anfragen werden mit absoluter Diskretion behandelt."},
-        {k:['hotel','resort','entwicklung','umbau','potenzial'],a:"Das Anwesen eignet sich ideal für **Luxus-Boutique-Hotel-Umwandlung**, Wellness- & Agro-Resort, privaten Reitsportclub, Premium-Hochzeits- und Eventlocation oder Corporate Retreat."}
+        {k:['preis','kosten','euro','million','kauf','kaufen','investition','wert','rendite'],r:'Der Angebotspreis betraegt 12,5 Millionen Euro fuer 77.760 qm vollstaendig lizenzierter Reitanlage auf der N-340 in Estepona. ROI-Modelle zeigen 8-14% Renditepotenzial durch Hotelkonversion und Premium-Events. Ein Neubau vergleichbarer Infrastruktur kostet 25-40 Mio. Euro.'},
+        {k:['groesse','flaeche','hektar','qm','m2','land','gross','areal'],r:'77.760 qm (ca. 7,8 Hektar) mit ueber 11.000 qm bebauter Flaeche: Hauptarena, Wettkampfarena, 150+ Pferdeboxen, Restaurant mit 180 Plaetzen und Event-Flaechen fuer 1.600 Gaeste.'},
+        {k:['lage','wo','adresse','estepona','n-340','kuestestrasse','marbella','malaga'],r:'Direkt an der N-340 Carretera de Cadiz zwischen Estepona und San Pedro de Alcantara, Costa del Sol. Nur 20 Minuten von Marbella und dem Flughafen Malaga entfernt.'},
+        {k:['stall','pferd','reiten','reitanlage','box'],r:'150+ professionelle Pferdeboxen und Paddocks, voll lizenziert und in Betrieb.'},
+        {k:['restaurant','essen','gastronomie','bar','kueche'],r:'Restaurant mit 180 Sitzplaetzen erzeugt unabhaengige Einnahmen.'},
+        {k:['event','hochzeit','veranstaltung','show','gala','kapazitaet','gaeste'],r:'Veranstaltungsflaechen fuer bis zu 1.600 Gaeste. Events, Hochzeiten und Galas sind bereits etablierte Einnahmenquellen.'},
+        {k:['hotel','resort','entwicklung','umbau','tourismus','zimmer'],r:'Volle Planungsmoeglichkeit fuer Hotelkonversion. Vergleichbare Luxusresorts an der Costa del Sol erzielen 400-600 Euro pro Nacht.'},
+        {k:['lizenz','genehmigung','recht','planung'],r:'Alle erforderlichen Betriebsgenehmigungen fuer Reitsport, Events und Gastronomie sind vorhanden.'},
+        {k:['nda','kontakt','besichtigung','informationen','email','anruf'],r:'Wir arrangieren gerne eine vertrauliche Besichtigung unter NDA. Bitte nutzen Sie das Kontaktformular unten.'},
+        {k:['einzigartig','selten','unersetzlich','trophae','warum'],r:'Dieses Anwesen ist unersetzlich. Eine voll lizenzierte Reitanlage dieser Groesse direkt an der Costa del Sol existiert nirgendwo sonst auf dem Markt.'}
       ]
     },
     es: {
-      welcome: "Bienvenido. Soy el Concierge AI privado de E.A.E. Costa del Sol. ¿En qué puedo ayudarle?",
-      unknown: "Gracias por su consulta. Para información detallada, contacte directamente a Simone Moharos: +34 681 336 692 o simonemoharos@gmail.com.",
+      welcome: 'Bienvenido! Soy su concierge de IA para la Escuela de Arte Ecuestre Costa del Sol. Pregunteme sobre este extraordinario activo.',
+      unknown: 'Gracias por su pregunta. Para informacion detallada, contactenos a traves del formulario. Organizaremos un briefing confidencial bajo NDA.',
       rules: [
-        {k:['precio','coste','euro','millón','valor','€'],a:"El precio de venta es **€12,5 millones** — ofrecido exclusivamente como operación de activos. Terreno, todos los edificios, infraestructura y licencias de explotación incluidos."},
-        {k:['tamaño','superficie','m²','hectárea','parcela'],a:"La finca abarca **77.760 m²** (aprox. 7,8 hectáreas) en dos parcelas catastrales. Superficie construida cubierta total: **19.154 m²**. Clasificación urbanística K-Deportivo."},
-        {k:['ubicación','dónde','dirección','estepona','marbella'],a:"Ubicado en N-340, km 159 · Río Padrón Alto · Estepona, Málaga. Solo **8 min del centro de Estepona**, 25 min de Marbella / Puerto Banús, 35 min del aeropuerto de Gibraltar."},
-        {k:['inversión','rentabilidad','beneficio','oportunidad','lucrativo'],a:"Una **oportunidad única en la vida**: infraestructura de 19.154 m² ya construida, licencias operativas, ubicación irreproducible entre Estepona y Marbella, múltiples estrategias de salida (hotel, resort, club, eventos)."},
-        {k:['contacto','simone','teléfono','email','visita'],a:"**Simone Moharos** · Agente Inmobiliaria
-📞 +34 681 336 692
-✉️ simonemoharos@gmail.com"}
+        {k:['precio','coste','euro','millon','compra','invertir','inversion','valor','rendimiento'],r:'El precio es de 12,5 millones de euros por 77.760 m2 de infraestructura ecuestre licenciada en la N-340 de Estepona. Potencial de rentabilidad del 8-14%. Una nueva construccion equivalente costaria 25-40 millones de euros.'},
+        {k:['tamano','superficie','hectareas','m2','terreno','grande'],r:'77.760 m2 (aprox. 7,8 ha) con mas de 11.000 m2 construidos: pista principal, competicion, 150+ boxes, restaurante 180 plazas y eventos para 1.600 invitados.'},
+        {k:['ubicacion','donde','direccion','estepona','n-340','costa','marbella','malaga'],r:'En la N-340 entre Estepona y San Pedro de Alcantara. Solo 20 minutos de Marbella y el aeropuerto de Malaga.'},
+        {k:['cuadra','caballo','ecuestre','box','potrero'],r:'Mas de 150 boxes y paddocks profesionales, totalmente licenciados y operativos.'},
+        {k:['restaurante','comida','gastronomia','bar','cocina'],r:'Restaurante y bar con 180 comensales, generando ingresos independientes.'},
+        {k:['evento','boda','concierto','gala','capacidad','invitados'],r:'Instalaciones para 1.600 invitados. Bodas, espectaculos ecuestres y galas corporativas ya establecidas.'},
+        {k:['hotel','resort','desarrollo','conversion','turismo'],r:'Potencial total para hotel o resort boutique. Los resorts de lujo comparables en la Costa del Sol alcanzan 400-600 euros por noche.'},
+        {k:['licencia','permiso','legal','planificacion'],r:'Todas las licencias operativas para uso ecuestre, eventos y hosteleria.'},
+        {k:['nda','contacto','visita','informacion','email','llamar'],r:'Organizaremos una visita confidencial bajo NDA. Complete el formulario de contacto y responderemos en 24 horas.'},
+        {k:['unico','raro','irremplazable','trofeo','por que'],r:'Activo verdaderamente irremplazable. Una finca ecuestre de este tamano en la Costa del Sol no existe en ningun otro lugar del mercado.'}
       ]
     },
     ru: {
-      welcome: "Добро пожаловать. Я частный AI-консьерж E.A.E. Costa del Sol. Чем могу помочь?",
-      unknown: "Спасибо за вопрос. Для получения подробной информации свяжитесь с Симоной Мохарос: +34 681 336 692 или simonemoharos@gmail.com.",
+      welcome: 'Zdravstvujte! Ya vash ИИ-konsierz dlya Escuela de Arte Ecuestre Costa del Sol.',
+      unknown: 'Spasibo. Dlya podrobnoj informacii zapolnite formu nizhe.',
       rules: [
-        {k:['цена','стоимость','евро','миллион','€'],a:"Запрашиваемая цена — **€12,5 миллиона** — предлагается исключительно как сделка с активами. Земля, все здания, инфраструктура и операционные лицензии включены."},
-        {k:['размер','площадь','м²','гектар','участок'],a:"Поместье занимает **77 760 м²** (около 7,8 га) на двух кадастровых участках. Общая застроенная площадь: **19 154 м²**."},
-        {k:['расположение','адрес','эстепона','марбелья'],a:"Расположен на N-340, км 159 · Río Padrón Alto · Эстепона, Малага. Всего **8 мин от центра Эстепоны**, 25 мин от Марбельи / Пуэрто-Банус."},
-        {k:['инвестиция','доход','прибыль','возможность'],a:"**Инвестиция раз в жизнь**: готовая инфраструктура 19 154 м², операционные лицензии, уникальное расположение между Эстепоной и Марбельей — невозможно воспроизвести по новым правилам застройки."},
-        {k:['контакт','симона','телефон','email','осмотр'],a:"**Simone Moharos**
-📞 +34 681 336 692
-✉️ simonemoharos@gmail.com"}
+        {k:['cena','stoimost','evro','million','kupit','investicii'],r:'Cena 12,5 millionov evro. 77 760 kv.m licenzirovannoj konnoj infrastruktury na N-340 v Estepona. Potencial dohodnosti 8-14%.'},
+        {k:['razmer','ploshhad','gektary','zemlya'],r:'77 760 kv.m (ok. 7,8 ga): arena, 150+ konyushen, restoran na 180 mest, meropriyaniya dlya 1600 gostej.'},
+        {k:['mestopolozhenie','gde','adres','estepona','kosta-del-sol','marbella'],r:'Na N-340 mezhdu Estepona i San Pedro de Alcantara. 20 minut ot Marbelly i aeroporta Malagi.'},
+        {k:['konyushnya','loshad','konnyi'],r:'150+ konyushen i paddokov, polnostyu licenzirovannyh.'},
+        {k:['restoran','bar'],r:'Restoran na 180 mest s nezavisimymi dohodami.'},
+        {k:['meropriyatie','svadba','gala','gosti'],r:'Ploshhadki dlya 1600 gostej. Svadby i korporativnye meropriyaniya uzhe rabotayut.'},
+        {k:['otel','resort','razvitie'],r:'Polnyj potencial dlya otelya. Analogichnye resorty na Kosta-del-Sol - 400-600 evro/noch.'},
+        {k:['licenziya','razreshenie'],r:'Vse licenzii dlya konnoj deyatelnosti, meropriyatij i obsluzhivaniya gostej.'},
+        {k:['nda','kontakt','vizit','email'],r:'Organizuem konfidencialnyj osmotr pod NDA. Zapolnite formu.'},
+        {k:['unikalnyj','redkij','nezamenimy'],r:'Etot aktiv nezamenim na rynke Kosta-del-Sol.'}
       ]
     }
   };
-
-  function mdToHtml(t){
-    return t.replace(/**(.*?)**/g,'<strong>$1</strong>').replace(/
-/g,'<br>');
+  function mdToHtml(t){return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>');}
+  function addMsg(who,text){
+    var m=document.querySelector('.msgs');if(!m)return;
+    var d=document.createElement('div');d.className='msg '+who;
+    d.innerHTML=mdToHtml(text);m.appendChild(d);m.scrollTop=m.scrollHeight;
   }
-
-  function getAnswer(q){
-    var ql = q.toLowerCase();
-    var rules = (KB[lang]||KB.en).rules;
-    for(var i=0;i<rules.length;i++){
-      var r=rules[i];
-      for(var j=0;j<r.k.length;j++){
-        if(ql.indexOf(r.k[j])>=0) return r.a;
-      }
-    }
-    return (KB[lang]||KB.en).unknown;
+  function getReply(q){
+    var ql=q.toLowerCase();var data=KB[lang]||KB.en;
+    for(var i=0;i<data.rules.length;i++){var rule=data.rules[i];for(var j=0;j<rule.k.length;j++){if(ql.indexOf(rule.k[j])!==-1)return rule.r;}}
+    return data.unknown;
   }
-
-  function addMsg(role, text){
-    var msgs = document.querySelector('.msgs');
-    if(!msgs) return;
-    var div = document.createElement('div');
-    div.className = 'msg ' + role;
-    var icon = document.createElement('div');
-    icon.className = 'mic';
-    icon.style.cssText = role==='ai'?'background:#4A5830;':'background:#C8962A;';
-    icon.innerHTML = role==='ai'?'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9F3E8" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>':'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F9F3E8" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>';
-    var bubble = document.createElement('div');
-    bubble.className = 'mb';
-    bubble.innerHTML = mdToHtml(text);
-    div.appendChild(icon);
-    div.appendChild(bubble);
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-
-  function showTyping(){
-    var msgs = document.querySelector('.msgs');
-    if(!msgs) return null;
-    var div = document.createElement('div');
-    div.className = 'msg ai typing-ind';
-    div.innerHTML = '<div class="mic" style="background:#4A5830"></div><div class="mb" style="background:var(--parch)">···</div>';
-    msgs.appendChild(div);
-    msgs.scrollTop = msgs.scrollHeight;
-    return div;
-  }
-
-  window.setLang = function(l){
-    lang = l;
-    document.querySelectorAll('.lang-btn').forEach(function(b){ b.classList.remove('active'); });
-    var active = document.querySelector('[data-lang="'+l+'"]');
-    if(active) active.classList.add('active');
-    var msgs = document.querySelector('.msgs');
-    if(msgs) { msgs.innerHTML=''; }
-    addMsg('ai', (KB[lang]||KB.en).welcome);
+  window.send=function(){
+    var inp=document.querySelector('.ci');if(!inp)return;
+    var q=inp.value.trim();if(!q)return;
+    inp.value='';addMsg('user',q);
+    var m=document.querySelector('.msgs');
+    var t=document.createElement('div');t.className='msg ai';t.textContent='...';
+    if(m)m.appendChild(t);
+    setTimeout(function(){if(m&&t.parentNode)m.removeChild(t);addMsg('ai',getReply(q));},700);
   };
-
-  window.send = function(){
-    var inp = document.querySelector('.ci');
-    if(!inp) return;
-    var q = inp.value.trim();
-    if(!q) return;
-    inp.value = '';
-    addMsg('user', q);
-    var typing = showTyping();
-    setTimeout(function(){
-      if(typing) typing.remove();
-      addMsg('ai', getAnswer(q));
-    }, 800);
+  window.setLang=function(l){
+    lang=l;var m=document.querySelector('.msgs');if(m)m.innerHTML='';
+    addMsg('ai',(KB[l]||KB.en).welcome);
+    var bs=document.querySelectorAll('.lang-btn');
+    for(var i=0;i<bs.length;i++)bs[i].style.fontWeight=bs[i].getAttribute('data-lang')===l?'bold':'normal';
   };
-
-  // Also handle Enter key
-  document.addEventListener('DOMContentLoaded', function(){
-    var inp = document.querySelector('.ci');
-    if(inp){
-      inp.addEventListener('keydown', function(e){
-        if(e.key==='Enter') window.send();
-      });
-    }
-    // Init with welcome message
-    setTimeout(function(){
-      addMsg('ai', (KB[lang]||KB.en).welcome);
-    }, 500);
-  });
-
-  // Also attach to lang buttons by data attribute
-  document.addEventListener('click', function(e){
-    if(e.target.matches('.lang-btn[data-lang]')){
-      window.setLang(e.target.getAttribute('data-lang'));
-    }
-    if(e.target.matches('.csend') || e.target.closest('.csend')){
-      window.send();
-    }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){window.setLang('en');var inp=document.querySelector('.ci');if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.send();});});}
+  else{window.setLang('en');var inp=document.querySelector('.ci');if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter')window.send();});}
+  document.addEventListener('click',function(e){
+    if(e.target&&e.target.matches&&e.target.matches('.csend'))window.send();
+    if(e.target&&e.target.matches&&e.target.matches('.lang-btn[data-lang]'))window.setLang(e.target.getAttribute('data-lang'));
   });
 })();
 </script>
