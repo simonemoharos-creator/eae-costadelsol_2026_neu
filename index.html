@@ -262,6 +262,18 @@ footer{background:#1A2008;padding:2.2rem 4rem;display:flex;justify-content:space
 .fnot{font-size:.58rem;color:rgba(217,196,160,.22);letter-spacing:.1em;text-align:center;line-height:1.9;}
 .fconf{font-size:.58rem;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;}
 
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:200;}
+.hamburger span{width:22px;height:1.5px;background:var(--olivek);transition:all .3s;display:block;}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.mobile-nav{display:none;position:fixed;inset:0;background:var(--cream);z-index:150;flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;}
+.mobile-nav.open{display:flex;}
+.mobile-nav a{font-size:.9rem;letter-spacing:.25em;text-transform:uppercase;color:var(--olivek);text-decoration:none;font-family:'Jost',sans-serif;}
+.mobile-nav a:hover{color:var(--terra);}
+
 @media(max-width:1100px){
   nav{padding:1.2rem 2rem;}.nlinks{gap:1.2rem;}
   .narr-inner,.story,.vis-inner,.location,.cinn{grid-template-columns:1fr;gap:3.5rem;}
@@ -272,13 +284,19 @@ footer{background:#1A2008;padding:2.2rem 4rem;display:flex;justify-content:space
   section,div.hero,div.trophy,div.narrative,div.story,div.facs,div.spaces,div.vision,div.location,div.conc,div.contact,div.irep,div.kfacts,div.drones{padding-left:2rem !important;padding-right:2rem !important;}
 }
 @media(max-width:640px){
-  .nlinks{display:none;}.facgrid{grid-template-columns:1fr;}
+  .nlinks{display:none;}
+  .hamburger{display:flex;}
+  .facgrid{grid-template-columns:1fr;}
   .frow{grid-template-columns:1fr;}
   footer{flex-direction:column;gap:.9rem;text-align:center;}
   .dgrid{grid-template-columns:1fr;}.ditem{height:55vw;}
   .fgrid{grid-template-columns:1fr 1fr;}
   .irep-grid{grid-template-columns:1fr;}
   .trophy{gap:1.5rem;padding:1rem 2rem;}
+  .hero{padding-top:5rem;}
+  .cinn,.conc{padding-left:1.2rem !important;padding-right:1.2rem !important;}
+  .qi-grid{grid-template-columns:1fr;}
+  .hprs{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -297,6 +315,15 @@ footer{background:#1A2008;padding:2.2rem 4rem;display:flex;justify-content:space
       <li><a href="#concierge">AI Concierge</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <nav class="mobile-nav" id="mobile-nav">
+    <a href="#story" onclick="closeMobileNav()">The Asset</a>
+    <a href="#facilities" onclick="closeMobileNav()">Infrastructure</a>
+    <a href="#vision" onclick="closeMobileNav()">Vision</a>
+    <a href="#location" onclick="closeMobileNav()">Location</a>
+    <a href="#concierge" onclick="closeMobileNav()">AI Concierge</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
   </nav>
 
   <!-- HERO -->
