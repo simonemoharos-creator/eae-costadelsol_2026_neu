@@ -743,3 +743,7 @@ function showTyp(){const d=document.getElementById('msgs');const v=document.crea
 function removeTyp(){const t=document.getElementById('typ');if(t)t.remove();}
 async function sendTxt(txt){if(!txt.trim())return;addMsg('user',txt);hist.push({role:'user',content:txt});const btn=document.getElementById('csend');btn.disabled=true;showTyp();
   try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:hist})});const data=await r.json();removeTyp();const rep=(data.content&&data.content[0]&&data.content[0].text)||'I apologise — unable to process your query.';addMsg('ai',rep);hist.push({role:'assistant',c
+<script>
+function closeMobileNav(){document.getElementById('mobile-nav').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+document.getElementById('hamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mobile-nav').classList.toggle('open');});
+</script>
