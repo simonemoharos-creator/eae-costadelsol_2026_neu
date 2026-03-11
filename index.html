@@ -301,6 +301,39 @@ footer{background:#1A2008;padding:2.2rem 4rem;display:flex;justify-content:space
 </style>
 </head>
 <body>
+<div id="pw-gate" style="position:fixed;inset:0;z-index:9999;background:#F9F3E8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Jost',sans-serif;">
+  <div style="text-align:center;padding:2rem 1.5rem;max-width:480px;width:100%;">
+    <div style="font-size:.65rem;letter-spacing:.35em;color:#4A5830;margin-bottom:1.5rem;text-transform:uppercase;">Private Access &middot; Confidential</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:#4A5830;margin-bottom:.3rem;line-height:1.1;">E.A.E. <em style="color:#C8962A;font-style:italic;">Costa del Sol</em></div>
+    <div style="font-size:.6rem;letter-spacing:.25em;color:#999;margin-bottom:3rem;text-transform:uppercase;">Trophy Asset &middot; Private Sale</div>
+    <div style="display:flex;gap:0;justify-content:center;margin-bottom:.8rem;border:1px solid #C8962A;">
+      <input id="pw-input" type="password" placeholder="Enter access code" autocomplete="off" style="padding:.85rem 1.2rem;background:transparent;border:none;font-family:'Jost',sans-serif;font-size:.85rem;letter-spacing:.12em;color:#4A5830;outline:none;flex:1;min-width:0;">
+      <button onclick="checkPW()" style="padding:.85rem 1.6rem;background:#4A5830;color:#F9F3E8;border:none;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.2em;cursor:pointer;text-transform:uppercase;white-space:nowrap;">Enter</button>
+    </div>
+    <div id="pw-error" style="color:#A0522D;font-size:.72rem;letter-spacing:.08em;min-height:1.2rem;"></div>
+    <div style="margin-top:2.5rem;font-size:.6rem;letter-spacing:.15em;color:#bbb;text-transform:uppercase;">For enquiries contact Simone Moharos</div>
+  </div>
+</div>
+<script>
+(function(){
+  if(sessionStorage.getItem('eae_auth')=='1'){document.getElementById('pw-gate').style.display='none';}
+  document.addEventListener('keydown',function(e){if(e.key==='Enter')checkPW();});
+})();
+function checkPW(){
+  var v=document.getElementById('pw-input').value;
+  if(v==='Moharos2026'){
+    sessionStorage.setItem('eae_auth','1');
+    var g=document.getElementById('pw-gate');
+    g.style.transition='opacity .6s';g.style.opacity='0';
+    setTimeout(function(){g.style.display='none';},620);
+  } else {
+    var er=document.getElementById('pw-error');
+    er.textContent='Incorrect access code. Please try again.';
+    document.getElementById('pw-input').value='';
+    document.getElementById('pw-input').focus();
+  }
+}
+</script>
 
 
 
